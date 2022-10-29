@@ -1,8 +1,8 @@
 ﻿let modInfo = {
-	name: "元素树",
-	id: "woshizuidiaode",
-	author: "匿_名",
-	pointsName: "点数",
+	name: "元素论",
+	id: "Element_Theory",
+	author: "模组树元素论team",
+	pointsName: "质子",
 	discordName: "",
 	discordLink: "",
 	initialStartPoints: new ExpantaNum (0), // Used for hard resets and new players
@@ -17,8 +17,8 @@ let VERSION = {
 }
 
 let changelog = `<h1>更新记录:</h1><br>
-	<h3>2022.10.22</h3><br>
-		- 获得灵感.<br>`
+	<h3>v0.0</h3><br>
+		- 添加内容.<br>`
 
 let winText = `恭喜通关!您已经完成了这个游戏.`
 
@@ -38,7 +38,10 @@ function canGenPoints(){
 // Calculate points/sec!
 function getPointGen() {
 	if(!canGenPoints()) return new ExpantaNum(0)
-	let gain = new ExpantaNum(0)
+	let gain = new ExpantaNum(1)
+	gain = gain.mul('1ee10')
+	gain = gain.pow(tmp.li.effect[0])
+	gain = gain.pow(tmp.li.effect[1])
 	return gain
 }
 
@@ -48,7 +51,6 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
-	"你现在啥也没有<br>怎么能获取点数呢"
 ]
 
 // Determines when the game "ends"
