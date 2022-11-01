@@ -40,7 +40,7 @@ function getPointGen() {
 	if(!canGenPoints()) return new ExpantaNum(0)
 	let gain = new ExpantaNum(1)
 	gain = gain.mul('1ee10')
-	gain = gain.pow(tmp.li.effect[0])
+	gain = gain.mul(tmp.li.effect[0])
 	gain = gain.pow(tmp.li.effect[1])
 	return gain
 }
