@@ -1,45 +1,47 @@
-# Layer Features
+# 图层功能
 
-This is a more comprehensive list of established features to add to layers. You can add more freely, if you want to have other functions or values associated with your layer. These have special functionality, though.
+这是一个比较全面的可以添加到图层的既定特征的列表。如果你想让其他功能或数值与你的图层相关联，你可以自由添加更多。不过，这些都有特殊的功能。
 
-You can make almost any value dynamic by using a function in its place, including all display strings and styling/color features.
+你可以通过在它的位置上使用一个函数使几乎所有的值都是动态的，包括所有的显示字符串和样式/颜色特征。
 
-## Layer Definition features
+## 图层定义的特征
 
-- layer: **assigned automagically**. It's the same value as the name of this layer, so you can do `player[this.layer].points` or similar to access the saved value. It makes copying code to new layers easier. It is also assigned to all upgrades and buyables and such.
+-  layer:**自动分配**。它与本层的名称相同，所以你可以做`player[this.layer].point`或类似的动作来访问保存的值。它使复制代码到新层变得更容易。它也被分配给所有的升级和可购买的东西等等。
 
-- name: **optional**. used in reset confirmations (and the default infobox title). If absent, it just uses the layer's id.
+- name:**在重置确认中使用（以及默认的信息框标题）。如果没有，它就使用图层的ID。
 
-- startData(): A function to return the default save data for this layer. Add any variables you have to it. Make sure to use `ExpantaNum` values rather than normal numbers.
+- startData()。一个函数，用于返回该层的默认保存数据。添加任何你有的变量到它。确保使用`十进制`值而不是普通的数字。
 
-    Standard values:
-        - Required:
-            - unlocked: a bool determining if this layer is unlocked or not
-            - points: a ExpantaNum, the main currency for the layer
-        - Optional:
-            - total: A ExpantaNum, tracks total amount of main prestige currency. Always tracked, but only shown if you add it here.
-            - best: A ExpantaNum, tracks highest amount of main prestige currency. Always tracked, but only shown if you add it here.
-            - unlockOrder: used to keep track of relevant layers unlocked before this one.
-            - resetTime: A number, time since this layer was last prestiged (or reset by another layer)
+    标准值。
+        - 需要。
+            - unlocked：一个bool，决定该层是否被解锁。
+            - points: 一个小数，该层的主要货币。
+        - 可选的。
+            - total: 一个小数，追踪主要信誉货币的总量。始终跟踪，但只有在你在这里添加时才显示。
+            - 最好的。一个小数，跟踪主要信誉货币的最高数额。总是被追踪，但只有在你添加到这里时才会显示。
+            - unlockOrder：用于跟踪在此层之前解锁的相关层。
+            - resetTime：一个数字，该层最后一次获得声望后的时间（或被其他层重置）。
 
-- color: A color associated with this layer, used in many places. (A string in hex format with a #)
+- color：一个与此层相关的颜色，在很多地方使用。(一个带#的十六进制格式的字符串)
 
-- row: The row of the layer, starting at 0. This affects where the node appears on the standard tree, and which resets affect the layer.
+- row:这将影响节点在标准树上出现的位置，以及哪些重置会影响该层。
 
-    Using "side" instead of a number will cause the layer to appear off to the side as a smaller node (useful for achievements and statistics). Side layers are not affected by resets unless you add a doReset to them.
+    使用 "side"而不是数字将导致该层作为一个较小的节点出现在边上（对成就和统计有用）。侧面层不会受到重置的影响，除非你给它们添加一个doReset。
 
-- displayRow: **OVERRIDE** Changes where the layer node appears without changing where it is in the reset order.
+- displayRow。**OVERRIDE** 改变图层节点出现的位置，而不改变它在重置顺序中的位置。
 
-- resource: Name of the main currency you gain by resetting on this layer.
+- resource:你在这个层上重置获得的主要货币的名称。
 
-- effect(): **optional**. A function that calculates and returns the current values of any bonuses inherent to the main currency. Can return a value or an object containing multiple values. *You will also have to implement the effect where it is applied.*
+- effect(): **可选**。一个函数，计算并返回主货币固有的任何奖金的当前值。可以返回一个值或一个包含多个值的对象。*你还必须在应用它的地方实现效果。
 
-- effectDescription: **optional**. A function that returns a description of this effect. If the text stays constant, it can just be a string.
+- effectDescription。**可选择**。一个函数，返回这个效果的描述。如果文本保持不变，它可以只是一个字符串。
 
-- layerShown(): **optional**, A function returning a bool which determines if this layer's node should be visible on the tree. It can also return "ghost", which will hide the layer, but its node will still take up space in the tree.
-    Defaults to true.
+- layerShown(): **可选**，一个返回bool的函数，决定这个层的节点是否应该在树上可见。它也可以返回 "ghost"，这将隐藏该层，但它的节点仍将在树上占据空间。
+    默认为true。
 
-- hotkeys: **optional**. An array containing information on any hotkeys associated with this layer:
+- hotkeys: **可选**。一个数组，包含与该层相关的任何热键的信息。
+
+通过www.DeepL.com/Translator（免费版）翻译
 
     ```js
     hotkeys: [
@@ -52,50 +54,52 @@ You can make almost any value dynamic by using a function in its place, includin
     ]
     ```
 
-- style: **optional**. a "CSS object" where the keys are CSS attributes, containing any CSS that should affect this layer's entire tab.
+- style:**一个 "CSS对象"，其中的键是CSS属性，包含任何应该影响这个层的整个标签的CSS。
 
-- tabFormat: **optional**. use this if you want to add extra things to your tab or change the layout. [See here for more info.](custom-tab-layouts.md)
+- tabFormat。**如果你想给你的标签添加额外的东西或改变布局，就用这个。[更多信息见这里](custom-tab-layouts.md)
 
-- midsection: **optional**, an alternative to `tabFormat`, which is inserted in between Milestones and Buyables in the standard tab layout. (cannot do subtabs)
+- midsection:**optional**，是`tabFormat'的替代品，在标准标签布局中，它被插入到Milestones和Buyables之间。(不能做副标签)
 
-## Big features (all optional)
+## 大功能（都是可选的）
 
-- upgrades: A set of one-time purchases which can have unique upgrade conditions, currency costs, and bonuses. [See here for more info.](upgrades.md)
+- upgrades:一组一次性购买的东西，可以有独特的升级条件、货币成本和奖金。[更多信息见这里]( upgrades.md)
 
-- milestones: A list of bonuses gained upon reaching certain thresholds of a resource. Often used for automation/QOL. [See here for more info.](milestones.md)
+- milestones:达到某种资源的特定阈值后获得的奖金列表。通常用于自动化/QOL。[更多信息见这里](milestones.md)
 
-- challenges: The player can enter challenges, which make the game harder. If they reach a goal and beat the challenge, they recieve a bonus. [See here for more info.](challenges.md)
+- challenges:玩家可以进入挑战，这使得游戏更难。如果他们达到目标并战胜挑战，他们就会获得奖励。[见这里获取更多信息。](challenges.md)
 
-- buyables: Effectively upgrades that can be bought multiple times, and are optionally respeccable. Many uses. [See here for more info.](buyables.md)
+-  buyables:有效的升级，可以多次购买，并且可以选择重新设定。有许多用途。[更多信息见这里。](buyables.md)
 
-- clickables: Extremely versatile and generalized buttons which can only be clicked sometimes. [See here for more info.](clickables.md)
+- clickables。极其通用的通用按钮，只能在某些时候被点击。[更多信息见这里](clickables.md)
 
-- microtabs: An area that functions like a set of subtabs, with buttons at the top changing the content within. (Advanced) [See here for more info.](subtabs-and-microtabs.md)
+- microtabs。一个区域，其功能类似于一组小标签，顶部的按钮可以改变其中的内容。(高级） [更多信息见这里](subtabs-and-microtabs.md)
 
-- bars: Display some information as a progress bar, gague, or similar. They are highly customizable, and can be vertical as well. [See here for more info.](bars.md)
+- bars: 以进度条、图示或类似方式显示一些信息。它们是高度可定制的，而且也可以是垂直的。[更多信息见这里。](bar.md)
 
-- achievements: Kind of like milestones, but with a different display style and some other differences. Extra features are on the way at a later date! [See here for more info.](achievements.md)
+- achievements:有点像里程碑，但有不同的显示风格和其他一些区别。额外的功能将在以后的日子里出现! [更多信息请看这里。](achievements.md)
 
-- achievementPopups, milestonePopups: **optional**, If false, disables popup message when you get the achievement/milestone. True by default.
+- achievementPopups, milestonePopups: **可选**，如果是假的，当你获得成就/里程碑时，将禁用弹出信息。默认为真。
 
-- infoboxes: Displays some text in a box that can be shown or hidden. [See here for more info.](infoboxes.md)
+- infoboxes:（infoboxes）。在一个可以显示或隐藏的框中显示一些文本。[更多信息见这里](infoboxes.md)
 
-- grid: A grid of buttons that behave the same, but have their own data.[See here for more info.](grids.md)
+- grid。一个行为相同的按钮网格，但有自己的数据。[更多信息见这里](grids.md)
 
-## Prestige formula features
+## Prestige公式的特点
 
-- type: **optional**. Determines which prestige formula you use. Defaults to "none".
+通过www.DeepL.com/Translator（免费版）翻译
 
-    - "normal": The amount of currency you gain is independent of its current amount (like Prestige). The formula before bonuses is based on `baseResource^exponent`
-    - "static": The cost is dependent on your total after reset. The formula before bonuses is based on `base^(x^exponent)`
-    - "custom": You can define everything, from the calculations to the text on the button, yourself. (See more at the bottom)
-    - "none": This layer does not prestige, and therefore does not need any of the other features in this section.
+- type:**可选**。决定你使用哪种威望公式。默认为 "无"。
+
+    - "normal": 你获得的货币数量与它的当前数量无关（如声望）。奖金前的公式是基于`baseResource^exponent`。
+    - "static": 费用取决于你重置后的总数。奖金前的公式是基于`base^(x^exponent)`。
+    - "custom": 你可以自己定义一切，从计算到按钮上的文字。(更多内容见底部)
+    - "none": 这一层没有声望，因此不需要本节中的任何其他特征。
 
 - baseResource: The name of the resource that determines how much of the main currency you gain on reset.
 
 - baseAmount(): A function that gets the current value of the base resource.
 
-- requires: A ExpantaNum, the amount of the base needed to gain 1 of the prestige currency. Also the amount required to unlock the layer. You can instead make this a function, to make it harder if another layer was unlocked first (based on unlockOrder).
+- requires: A Decimal, the amount of the base needed to gain 1 of the prestige currency. Also the amount required to unlock the layer. You can instead make this a function, to make it harder if another layer was unlocked first (based on unlockOrder).
 
 - exponent: Used as described above.
 
@@ -135,7 +139,7 @@ You can make almost any value dynamic by using a function in its place, includin
 
 - position: **optional**. Determines the horizontal position of the layer in its row in a standard tree. By default, it uses the layer id, and layers are sorted in alphabetical order.
 
-- branches: **optional**. An array of layer/node ids. On a tree, a line will appear from this layer to all of the layers in the list. Alternatively, an entry in the array can be a 2-element array consisting of the layer id and a color value. The color value can either be a string with a hex color code, or a number from 1-3 (theme-affected colors).
+- branches: **optional**. An array of layer/node ids. On a tree, a line will appear from this layer to all of the layers in the list. Alternatively, an entry in the array can be a 2-element array consisting of the layer id and a color value. The color value can either be a string with a hex color code, or a number from 1-3 (theme-affected colors). A third element in the array optionally specifies line width.
 
 - nodeStyle: **optional**. A CSS object, where the keys are CSS attributes, which styles this layer's node on the tree.
 

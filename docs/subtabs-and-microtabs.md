@@ -1,8 +1,8 @@
-# Subtabs and Microtabs
+# 小标签和微标签
 
-Subtabs are separate sections of a tab that you can view by selecting one at the top of the tab. Microtabs are smaller areas that function in much the same way. You can also embed layers inside of subtabs/microtabs.
+小标签是一个标签的独立部分，你可以通过在标签的顶部选择一个来查看。微型标签是更小的区域，其功能与之基本相同。你也可以在副标签/微型标签中嵌入图层。
 
-Subtabs are defined by using the tab format like this, where each element of tabFormat is given the name of that subtab:
+小标签是通过使用像这样的标签格式来定义的，其中tabFormat的每个元素都被赋予该小标签的名称。
 
 ```js
 tabFormat: {
@@ -18,7 +18,7 @@ tabFormat: {
 }
 ```
 
-Microtabs are defined similarly, and use the same features, but are defined in the "microtabs" feature. Each entry is a group of tabs which will appear in a microtabs component. The first set, "stuff", has 2 tabs, and the second, "otherStuff", has none.
+微型标签的定义与此类似，使用相同的功能，但在 "微型标签 "功能中被定义。每个条目都是一组标签，将出现在microtabs组件中。第一组，"stuff"，有2个标签，第二组，"otherStuff"，没有。
 
 ```js
 microtabs: {
@@ -38,22 +38,22 @@ microtabs: {
 }
 ```
 
-Normal subtabs and microtab subtabs both use the same features:
+普通副标签和微型标签副标签都使用相同的特征。
 
-# Features:
+# 功能。
 
-- content: The tab layout code for the subtab, in [the tab layout format](custom-tab-layouts.md).
+- 内容。副标签的标签布局代码，以[标签布局格式](custom-tab-layouts.md)的形式。
 
-- style: **optional**. Applies CSS to the whole subtab when switched to, in the form of an "CSS Object", where the keys are CSS attributes, and the values are the values for those attributes (both as strings).
+- 样式。**可选**。当切换到子标签时，将CSS应用于整个子标签，以 "CSS对象 "的形式，其中键是CSS属性，值是这些属性的值（都是字符串）。
 
-- buttonStyle: **optional**. A CSS object, which affects the appearance of the button for that subtab.
+- buttonStyle。**可选**。一个CSS对象，它影响该子标签的按钮的外观。
 
-- unlocked(): **optional**. a function to determine if the button for this subtab should be visible. By default, a subtab is always unlocked. You can't use the "this" keyword in this function.
+- unlocked(): **一个函数，用于确定该子标签的按钮是否应该可见。默认情况下，一个子标签总是被解锁的。你不能在这个函数中使用 "this "关键字。
 
-- shouldNotify()/prestigeNotify(): **optional**, if true, the tab button will be highlighted to notify the player that there is something there.
+- shouldNotify()/prestigeNotify()。**可选**，如果为真，标签按钮将被高亮，以通知玩家那里有东西。
 
-- glowColor: **optional**, specifies the color that the subtab glows. If this subtab is causing the main layer to node glow
-    (and it would't otherwise) the node also glows this color. Is NOT overridden by embedding a layer.
+- glowColor。**可选**，指定子标签发光的颜色。如果这个子标签导致主层结点发亮
+    (否则就不会），该节点也会发出这种颜色。不会被嵌入层所覆盖。
 
-- embedLayer: **SIGNIFICANT**, the id of another layer. If you have this, it will override "content", "style" and "shouldNotify",
-                instead displaying the entire layer in the subtab.
+- embedLayer: **重要的**，另一个图层的ID。如果你有这个，它将覆盖 "content"、"style "和 "shouldNotify"。
+                而在子标签中显示整个图层。

@@ -49,7 +49,7 @@ addLayer("li", {
         pickerpickTimes: n(0),
         lastPickTime: n(0),
 
-        achievement: n(0),
+        honour: n(0),
         knowledge: n(0),
 
 		points: n(0),
@@ -61,13 +61,13 @@ addLayer("li", {
         totalOre: n(0),
         totalPickTimes: n(0),
         totalpickerpickTimes: n(0),
-        totalAchievement: n(0),
+        totalHonour: n(0),
     }},
     color: "rgb(214,211,206)",
     resource: "锂",
     type: "none",
 	effect(){
-        let mul = player.li.totalAchievement.add(1).pow(1234).max(1)
+        let mul = player.li.totalHonour.add(1).pow(1234).max(1)
 
 		let eff = n(0)
         eff = eff.add(n(11).sub(player.li.density).max(1).pow(5).log(10).max(1))
@@ -87,10 +87,10 @@ addLayer("li", {
 
         player.li.lastPickTime = player.li.lastPickTime.add(n(1).mul(diff)).max(0)
 
-        player.li.achievement = player.li.achievement.add(n(buyableEffect('li',32)).mul(diff)).max(0)
-        player.li.totalAchievement = player.li.totalAchievement.add(n(buyableEffect('li',32)).mul(diff)).max(0)
+        player.li.honour = player.li.honour.add(n(buyableEffect('li',32)).mul(diff)).max(0)
+        player.li.totalHonour = player.li.totalHonour.add(n(buyableEffect('li',32)).mul(diff)).max(0)
 	},
-    layerShown(){return hasAchievement('a',13)},
+    layerShown(){return false},
 	clickables:{
         'mine_main_0':{
             title:'矿洞',
@@ -422,7 +422,14 @@ addLayer("li", {
 		},
     },
 	microtabs:{
-        "旋转":{
+        "子荣耀":{
+            "荣耀网格轮盘赌":{
+                content:[
+                    ["display-text",
+                    function() { return ``},
+                    ],
+                ],
+            },
         },
     },
     tabFormat: {
@@ -450,9 +457,14 @@ addLayer("li", {
                 ['row',[['clickable', 'mine_picker_0']]],
             ],
         },
-        "成就感":{
+        "荣耀":{
             content:[
-                ["microtabs","旋转",{'border-width':'0px'}],
+                ["display-text",
+                    function() { return `你已经获得了 <h2 style="color: yellow; text-shadow: yellow 0px 0px 10px;">`+format(player.li.achievement)+`</h2> 成就感, 它使你的质子生产变为 <h2 style="color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;">`+format(tmp.li.effect[0],3)+`</h2> 倍.`},
+                ],
+                "blank",
+                "blank",
+                ["microtabs","子荣耀",{'border-width':'0px'}],
             ],
         },
         "净化":{
@@ -477,3 +489,5 @@ addLayer("li", {
         },
     },
 })
+
+
