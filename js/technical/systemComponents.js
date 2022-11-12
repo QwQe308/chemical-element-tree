@@ -162,24 +162,24 @@ var systemComponents = {
         template: `
         <table>
             <tr>
+				<td><big><big>存档</td>
                 <td><button class="opt" onclick="save()">存档</button></td>
                 <td><button class="opt" onclick="toggleOpt('autosave')">自动存档: {{ options.autosave?"已开启":"已关闭" }}</button></td>
+                <td><button class="opt" onclick="exportSave()">导出存档(复制到黏贴板)</button></td>
+                <td><button class="opt" onclick="importSave()">导入存档</button></td>
                 <td><button class="opt" onclick="hardReset()">硬重置(删除存档)</button></td>
             </tr>
             <tr>
-                <td><button class="opt" onclick="exportSave()">导出存档(复制到黏贴板)</button></td>
-                <td><button class="opt" onclick="importSave()">导入存档</button></td>
-                <td><button class="opt" onclick="toggleOpt('offlineProd')">离线进度: {{ options.offlineProd?"已开启":"已关闭" }}</button></td>
-            </tr>
-            <tr>
+				<td><big><big>画面</td>
                 <td><button class="opt" onclick="switchTheme()">背景主题: {{ getThemeName() }}</button></td>
-                <td><button class="opt" onclick="adjustMSDisp()">显示里程碑: {{ MS_DISPLAYS[MS_SETTINGS.indexOf(options.msDisplay)]}}</button></td>
-                <td><button class="opt" onclick="toggleOpt('hqTree')">高质量树: {{ options.hqTree?"已开启":"已关闭" }}</button></td>
+                <td><button class="opt" onclick="toggleOpt('forceOneTab'); needsCanvasUpdate = true">节点内容占据整个屏幕: {{ options.forceOneTab?"永远这样":"自动调节" }}</button></td>
             </tr>
             <tr>
+				<td><big><big>游戏体验</td>
+                <td><button class="opt" onclick="toggleOpt('offlineProd')">离线进度: {{ options.offlineProd?"已开启":"已关闭" }}</button></td>
                 <td><button class="opt" onclick="toggleOpt('hideChallenges')">已完成挑战: {{ options.hideChallenges?"隐藏":"显示" }}</button></td>
-                <td><button class="opt" onclick="toggleOpt('forceOneTab'); needsCanvasUpdate = true">节点内容占据整个屏幕: {{ options.forceOneTab?"永远这样":"自动调节" }}</button></td>
-			</tr> 
+                <td><button class="opt" onclick="adjustMSDisp()">显示里程碑: {{ MS_DISPLAYS[MS_SETTINGS.indexOf(options.msDisplay)]}}</button></td>
+            </tr>
         </table>`
     },
 

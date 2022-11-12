@@ -1,6 +1,6 @@
 addLayer("a", {
     name: "Achievement",
-    symbol: "<small>元素",
+    symbol: "<small><small><small>元素",
     position: 3,
     startData() { return {
         unlocked: true,
@@ -57,7 +57,7 @@ addLayer("a", {
         "blank",
         "blank",
         ["display-text",function() { return `元素论创始人:辉影神秘, 寒寒, 匿_名, 神之海, ajchen` },{"font-size": "22px", "font-family": "Comic Sans MS" }],
-        ["display-text",function() { return `元素论team:辉影神秘, 寒寒, 匿_名, 神之海, ajchen, QwQe308` },{"font-size": "22px", "font-family": "Comic Sans MS" }],
+        ["display-text",function() { return `元素论team:辉影神秘, 寒寒, 匿_名, 神之海, ajchen, QwQe308, 银千叶, 3^3` },{"font-size": "22px", "font-family": "Comic Sans MS" }],
         ["display-text",function() { return `特别感谢:cyxw` },{"font-size": "22px", "font-family": "Comic Sans MS" }],
     ],
 })
